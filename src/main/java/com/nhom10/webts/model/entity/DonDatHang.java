@@ -32,6 +32,12 @@ public class DonDatHang {
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private Date thoiGianVC;
 
+    @Column(name = "dia_chi")
+    private String diaChi;
+
+    @Column(name = "sdt")
+    private String sdt;
+
     @Transient
     @OneToMany
     private List<ChiTietDDH> chiTietDDHS;
