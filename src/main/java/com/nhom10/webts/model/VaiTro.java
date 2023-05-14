@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public enum VaiTro {
-    NHANVIEN, KHACHHANG
+    ROLE_NHANVIEN, ROLE_KHACHHANG
 }

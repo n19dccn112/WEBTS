@@ -15,7 +15,7 @@ public class SignupRequest {
     @Size(min = 3, max = 20)
     private String hoTen;
 
-    private String diachi;
+    private String diaChi;
 
     @NotBlank
     @Size(max = 10)
