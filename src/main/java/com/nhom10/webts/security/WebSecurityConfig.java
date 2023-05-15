@@ -65,114 +65,82 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
-        // định dạng mẫu URL k bị phân quyền
-        // assets - trang hình ảnh
-        web.ignoring()
-                .antMatchers(HttpMethod.GET,
-                        "/api/auth/**",
-                        "/api/v1/public**",
-                        "/swagger-ui**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/api/categories**",
-                        "/api/categories/**",
-                        "/api/Mon**",
-                        "/api/Mon/**");
-        web.ignoring()
-                .antMatchers(HttpMethod.POST,
-                        "/api/auth/**",
-                        "/api/v1/public**",
-                        "/swagger-ui**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**");
-    }
-
-    @Override
     // cấu hình phân quyền
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,
-                        "/api/auth/**",
-                        "/api/v1/public**",
-                        "/swagger-ui**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/api/Mon**",
-                        "/api/NguyenLieu**",
-                        "/api/NguoiDung**",
-                        "/api/DonDatHang**",
-                        "/api/TonKho**",
-                        "/api/DoiTacVanChuyen**",
-                        "/api/ChiTietDonDatHang**")
-                .hasRole("NHANVIEN")
-                .antMatchers(HttpMethod.GET,
-                        "/api/auth/**",
-                        "/api/v1/public**",
-                        "/swagger-ui**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/api/Mon**",
-                        "/api/Mon/**",
-                        "/api/NguyenLieu**",
-                        "/api/NguyenLieu/**",
-                        "/api/NguoiDung**",
-                        "/api/NguoiDung/**",
-                        "/api/DonDatHang**",
-                        "/api/DonDatHang/**",
-                        "/api/TonKho**",
-                        "/api/TonKho/**",
-                        "/api/DoiTacVanChuyen/**",
-                        "/api/DoiTacVanChuyen**",
-                        "/api/ChiTietDonDatHang/**",
-                        "/api/ChiTietDonDatHang**")
-                .hasRole("NHANVIEN")
-                .antMatchers(HttpMethod.DELETE,
-                        "/api/v1/admin**",
-                        "/api/Mon/**",
-                        "/api/NguyenLieu/**",
-                        "/api/NguoiDung/**",
-                        "/api/DonDatHang/**",
-                        "/api/TonKho/**",
-                        "/api/DoiTacVanChuyen/**",
-                        "/api/ChiTietDonDatHang/**")
-                .hasRole("NHANVIEN")
-                .antMatchers(HttpMethod.PUT,
-                        "/api/v1/admin**",
-                        "/api/Mon/**",
-                        "/api/NguyenLieu/**",
-                        "/api/NguoiDung/**",
-                        "/api/DonDatHang/**",
-                        "/api/TonKho/**",
-                        "/api/DoiTacVanChuyen/**",
-                        "/api/ChiTietDonDatHang/**")
-                .hasRole("NHANVIEN")
-                .antMatchers(HttpMethod.GET,
-                        "api/mon**",
-                        "/api/mon/**",
-                        "/api/DonDatHang**",
-                        "/api/DonDatHang/**",
-                        "/api/ChiTietDonDatHang/**",
-                        "/api/ChiTietDonDatHang**")
-                .hasRole("KHACHHANG")
-                .antMatchers(HttpMethod.POST,
-                        "/api/orders**",
-                        "/api/orderDetails**")
-                .hasRole("KHACHHANG")
-                .antMatchers(HttpMethod.DELETE,
-                        "/api/orders**",
-                        "/api/orderDetails**")
-                .hasRole("KHACHHANG")
-                .antMatchers(HttpMethod.PUT,
-                        "/api/orders**",
-                        "/api/orderDetails**")
-                .hasRole("KHACHHANG")
                 .antMatchers(
-                        "/api/v1/**")
-                .hasAnyRole("KHACHHANG", "NHANVIEN")
+                        "/api/auth/**",
+                        "/api/v1/public**",
+                        "/swagger-ui**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**")
+                .permitAll()
+                .antMatchers(HttpMethod.GET,
+                        "/api/DonDatHang**",
+                        "/api/DonDatHang/**",
+                        "/api/categories**",
+                        "/api/categories/**",
+                        "/api/Mon**",
+                        "/api/Mon/**")
+                .permitAll()
+                .antMatchers(HttpMethod.POST,
+                        "/api/Mon**",
+                        "/api/NguyenLieu**",
+                        "/api/NguoiDung**",
+                        "/api/DonDatHang**",
+                        "/api/TonKho**",
+                        "/api/DoiTacVanChuyen**",
+                        "/api/ChiTietDonDatHang**")
+                .hasRole("NHANVIEN")
+                .antMatchers(HttpMethod.GET,
+                        "/api/NguyenLieu**",
+                        "/api/NguyenLieu/**",
+                        "/api/NguoiDung**",
+                        "/api/NguoiDung/**",
+                        "/api/TonKho**",
+                        "/api/TonKho/**",
+                        "/api/DoiTacVanChuyen/**",
+                        "/api/DoiTacVanChuyen**",
+                        "/api/ChiTietDonDatHang/**",
+                        "/api/ChiTietDonDatHang**")
+                .hasRole("NHANVIEN")
+                .antMatchers(HttpMethod.DELETE,
+                        "/api/Mon/**",
+                        "/api/NguyenLieu/**",
+                        "/api/NguoiDung/**",
+                        "/api/DonDatHang/**",
+                        "/api/TonKho/**",
+                        "/api/DoiTacVanChuyen/**",
+                        "/api/ChiTietDonDatHang/**")
+                .hasRole("NHANVIEN")
+                .antMatchers(HttpMethod.PUT,
+                        "/api/Mon/**",
+                        "/api/NguyenLieu/**",
+                        "/api/NguoiDung/**",
+                        "/api/DonDatHang/**",
+                        "/api/TonKho/**",
+                        "/api/DoiTacVanChuyen/**",
+                        "/api/ChiTietDonDatHang/**")
+                .hasRole("NHANVIEN")
+                .antMatchers(HttpMethod.GET,
+                        "/api/ChiTietDonDatHang/**",
+                        "/api/ChiTietDonDatHang**")
+                .hasRole("KHACHHANG")
+                .antMatchers(HttpMethod.POST,
+                        "/api/orders**",
+                        "/api/orderDetails**")
+                .hasRole("KHACHHANG")
+                .antMatchers(HttpMethod.DELETE,
+                        "/api/orders**",
+                        "/api/orderDetails**")
+                .hasRole("KHACHHANG")
+                .antMatchers(HttpMethod.PUT,
+                        "/api/orders**",
+                        "/api/orderDetails**")
+                .hasRole("KHACHHANG")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
