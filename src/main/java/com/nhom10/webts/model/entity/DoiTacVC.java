@@ -28,6 +28,9 @@ public class DoiTacVC {
     @DateTimeFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private Date thoiGianGH;
 
+    @Column(name="ho_ten")
+    private String hoTen;
+
     @Transient
     @OneToMany
     private List<DonDatHang> donDatHangs;
