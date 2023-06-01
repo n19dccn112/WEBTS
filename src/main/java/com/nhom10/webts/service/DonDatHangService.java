@@ -83,6 +83,8 @@ public class DonDatHangService implements IBaseService<DonDatHangDTO, Long>, IMo
     public DonDatHang updateEntity(DonDatHang entity, DonDatHangDTO dto) {
         if (entity!=null && dto!=null){
             entity.setTrangThai(dto.getTrangThai());
+            entity.setThoiGianVC(dto.getThoiGianVC());
+            entity.setNguoiDung(nguoiDungRepository.getById(dto.getDoiTacVCId()));
         }
         return entity;
     }

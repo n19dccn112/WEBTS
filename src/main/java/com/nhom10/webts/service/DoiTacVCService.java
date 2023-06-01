@@ -75,6 +75,7 @@ public class DoiTacVCService implements IBaseService<DoiTacVCDTO, Long>, IModelM
     public DoiTacVC updateEntity(DoiTacVC entity, DoiTacVCDTO dto) {
         if (entity != null && dto != null) {
             entity.setThoiGianGH(dto.getThoiGianGH());
+            entity.setHoTen(dto.getHoTen());
         }
         return entity;
     }

@@ -18,7 +18,7 @@ public interface ChitietDDHRepository  extends JpaRepository<ChiTietDDH, ChiTiet
     void deleteAllByChiTiet_DDH(Long id_DonDatHang);
 
     @Modifying
-    @Query(value = "DELETE chi_tiet_don_dat_hang where id_mon=?1", nativeQuery = true)
+    @Query(value = "DELETE chi_tiet_don_dat_hang where mon_id=?1", nativeQuery = true)
     void deleteAllByMon(Long id_Mon);
     ChiTietDDH findById_Mon_IdAndId_DonDatHang_Id(Long idMon, Long idDDH);
     List<ChiTietDDH> findAllById_DonDatHang_Id(Long idDDH);

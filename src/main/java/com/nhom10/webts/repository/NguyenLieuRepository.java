@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface NguyenLieuRepository extends JpaRepository<NguyenLieu, NguyenLieuId> {
     @Modifying
-    @Query(value = "DELETE nguyen_lieu where id_mon=?1", nativeQuery = true)
+    @Query(value = "DELETE nguyen_lieu where mon_id=?1", nativeQuery = true)
     void deleteAllByMon(Long id_Mon);
 
     @Modifying

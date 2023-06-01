@@ -50,10 +50,15 @@ public class MonService implements IBaseService<MonDTO, Long>, IModelMapper<MonD
     @Transactional
     public MonDTO delete(Long id) {
         Mon mon = monRepository.getById(id);
-        chitietDDHRepository.deleteAllByMon(id);
-        nguyenLieuRepository.deleteAllByMon(id);
+        MonDTO monDTO = createFromE(mon);
+        try {
+            chitietDDHRepository.deleteAllByMon(id);
+            nguyenLieuRepository.deleteAllByMon(id);
+        }
+        catch (Exception  e){
+        }
         monRepository.delete(mon);
-        return createFromE(mon);
+        return monDTO;
     }
 
     @Override
@@ -73,6 +78,8 @@ public class MonService implements IBaseService<MonDTO, Long>, IModelMapper<MonD
     public Mon updateEntity(Mon entity, MonDTO dto) {
         if (entity!=null && dto!=null){
             entity.setTenMon(dto.getTenMon());
+            entity.setHinhAnh(dto.getHinhAnh());
+            entity.setGia(dto.getGia());
         }
         return entity;
     }

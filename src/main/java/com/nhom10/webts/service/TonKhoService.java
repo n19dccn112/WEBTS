@@ -48,7 +48,12 @@ public class TonKhoService implements IBaseService<TonKhoDTO, Long>, IModelMappe
     @Transactional
     public TonKhoDTO delete(Long id) {
         TonKho tonKho = tonKhoRepository.getById(id);
-        nguyenLieuRepository.deleteAllByTonKho(id);
+        try {
+            nguyenLieuRepository.deleteAllByTonKho(id);
+        }
+        catch (Exception e){
+
+        }
         tonKhoRepository.delete(tonKho);
         return createFromE(tonKho);
     }
@@ -69,6 +74,7 @@ public class TonKhoService implements IBaseService<TonKhoDTO, Long>, IModelMappe
         if(entity!=null && dto!=null){
             entity.setTenNguyenLieu(dto.getTenNguyenLieu());
             entity.setSoLuongTon(dto.getSoLuongTon());
+            entity.setDonVi(dto.getDonVi());
         }
         return entity;
     }

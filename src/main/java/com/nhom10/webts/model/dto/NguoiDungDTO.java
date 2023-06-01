@@ -18,7 +18,5 @@ public class NguoiDungDTO {
     @NotBlank
     private String sdt;
     private VaiTro vaiTro;
-    @NotNull
-    @NotBlank
     private String matKhau;
 }
