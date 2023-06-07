@@ -78,8 +78,11 @@ public class MonService implements IBaseService<MonDTO, Long>, IModelMapper<MonD
     public Mon updateEntity(Mon entity, MonDTO dto) {
         if (entity!=null && dto!=null){
             entity.setTenMon(dto.getTenMon());
+//            System.out.println(dto.getTenMon());
             entity.setHinhAnh(dto.getHinhAnh());
+//            System.out.println(dto.getHinhAnh());
             entity.setGia(dto.getGia());
+//            System.out.println(dto.getGia());
         }
         return entity;
     }

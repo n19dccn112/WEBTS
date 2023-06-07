@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.unauthorizedHandler = unauthorizedHandler;
         this.jwtUtils = jwtUtils;
     }
-
+//2-2login
     @Bean
     public JwtAuthTokenFilter authenticationJwtTokenFilter() {
         return new JwtAuthTokenFilter(jwtUtils, userDetailsService);
@@ -86,6 +86,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/Mon**",
                         "/api/Mon/**")
                 .permitAll()
+//                .antMatchers(HttpMethod.PUT,
+//                        "/api/Mon/**")
+//                .permitAll()
                 .antMatchers(HttpMethod.POST,
                         "/api/Mon**",
                         "/api/NguyenLieu**",
