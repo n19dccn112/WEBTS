@@ -47,12 +47,14 @@ public class DonDatHangService implements IBaseService<DonDatHangDTO, Long>, IMo
 
     public List<OrderStatusClass> findOrderStatus() {
         List<OrderStatusClass> orderStatusClasses = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             OrderStatusClass os = new OrderStatusClass();
             if (i == 0) os.setOrderStatus(OrderStatus.DATHANG);
             if (i == 1) os.setOrderStatus(OrderStatus.DANGPHACHE);
             if (i == 2) os.setOrderStatus(OrderStatus.VANCHUYEN);
             if (i == 3) os.setOrderStatus(OrderStatus.DAGIAO);
+            if (i == 4) os.setOrderStatus(OrderStatus.DAHUY);
+            if (i == 5) os.setOrderStatus(OrderStatus.DAXOA);
             os.setAmountOrderStatus(BigDecimal.valueOf(0));
             os.setId(Long.valueOf(i + 1));
             orderStatusClasses.add(os);

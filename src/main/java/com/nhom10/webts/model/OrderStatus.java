@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public enum OrderStatus {
-    DATHANG, DANGPHACHE, VANCHUYEN, DAGIAO
+    DATHANG, DANGPHACHE, VANCHUYEN, DAGIAO, DAHUY, DAXOA
 }
