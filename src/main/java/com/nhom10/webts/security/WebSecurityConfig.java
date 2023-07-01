@@ -94,10 +94,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/NguyenLieu**",
                         "/api/NguoiDung**",
                         "/api/DonDatHang**",
+                        "/api/DonDatHang/**",
                         "/api/TonKho**",
                         "/api/DoiTacVanChuyen**",
                         "/api/ChiTietDonDatHang**")
-                .hasRole("NHANVIEN")
+                .hasAnyRole("NHANVIEN", "KHACHHANG")
                 .antMatchers(HttpMethod.GET,
                         "/api/NguyenLieu**",
                         "/api/NguyenLieu/**",
@@ -105,8 +106,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/NguoiDung/**",
                         "/api/TonKho**",
                         "/api/TonKho/**",
-                        "/api/DoiTacVanChuyen/**",
                         "/api/DoiTacVanChuyen**",
+                        "/api/DoiTacVanChuyen/**",
                         "/api/ChiTietDonDatHang/**",
                         "/api/ChiTietDonDatHang**")
                 .hasRole("NHANVIEN")
@@ -123,7 +124,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/Mon/**",
                         "/api/NguyenLieu/**",
                         "/api/NguoiDung/**",
-                        "/api/DonDatHang/**",
                         "/api/TonKho/**",
                         "/api/DoiTacVanChuyen/**",
                         "/api/ChiTietDonDatHang/**")
@@ -133,17 +133,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/ChiTietDonDatHang**")
                 .hasRole("KHACHHANG")
                 .antMatchers(HttpMethod.POST,
-                        "/api/orders**",
-                        "/api/orderDetails**")
-                .hasRole("KHACHHANG")
+                        "/api/DonDatHang**",
+                        "/api/ChiTietDonDatHang**")
+                .hasAnyRole("KHACHHANG", "NHANVIEN")
                 .antMatchers(HttpMethod.DELETE,
-                        "/api/orders**",
-                        "/api/orderDetails**")
+                        "/api/DonDatHang**",
+                        "/api/DonDatHang/**",
+                        "/api/ChiTietDonDatHang**")
                 .hasRole("KHACHHANG")
                 .antMatchers(HttpMethod.PUT,
-                        "/api/orders**",
-                        "/api/orderDetails**")
-                .hasRole("KHACHHANG")
+                        "/api/DonDatHang/**",
+                        "/api/ChiTietDonDatHang**")
+                .hasAnyRole("KHACHHANG", "NHANVIEN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
